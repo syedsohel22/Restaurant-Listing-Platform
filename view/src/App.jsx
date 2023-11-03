@@ -1,9 +1,11 @@
-import { useState } from "react";
+import AllRoutes from "./components/AllRoutes";
 
 function App() {
-  const [count, setCount] = useState(0);
-
-  return <h1>Restaurant</h1>;
+  return (
+    <>
+      <AllRoutes />
+    </>
+  );
 }
 
 export default App;
