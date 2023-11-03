@@ -75,7 +75,23 @@ const updateRestaurant = async (req, res, next) => {
 };
 
 // Delete a Restaurant By Id
-const deleteRestaurant = async (req, res, next) => {};
+const deleteRestaurant = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+
+    const restaurant = await Restaurant.findByPk(id);
+
+    if (!restaurant) {
+      return next(errorHandler(404, "Restaurant not found."));
+    }
+
+    await restaurant.destroy();
+
+    res.json({ message: "Restaurant deleted successfully." });
+  } catch (error) {
+    next(error);
+  }
+};
 
 module.exports = {
   createRestaurant,
