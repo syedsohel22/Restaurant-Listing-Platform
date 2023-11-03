@@ -5,7 +5,7 @@ const Header = () => {
   return (
     <Container maxWidth={"100%"}>
       <Box display={"flex"} justifyContent={"space-between"}>
-        <Box padding={"20px 0px"}>
+        <Box padding={"20px 40px"}>
           <Typography variant="h4" gutterBottom>
             Welcome to Restaurant List
           </Typography>
