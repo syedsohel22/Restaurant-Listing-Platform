@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Container, Grid } from "@mui/material";
-
+import toast from "react-hot-toast";
 import Loader from "../components/Loader";
 import NewCard from "../components/NewCard";
 import Header from "../components/Header";
@@ -21,6 +21,7 @@ const Home = () => {
       })
       .catch((err) => {
         setIsLoading(false);
+        toast.error(err.message);
         console.log(err);
       });
   }, [reload]);
@@ -31,9 +32,13 @@ const Home = () => {
       .delete(`http://localhost:3000/api/v1/restaurants/${id}`)
       .then((res) => {
         // a toast
+        toast.success("Restaurant deleted successfully");
         setReload(!reload);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        toast.error("Error in deleting");
+      });
   };
   console.log(restaurants);
   return (
