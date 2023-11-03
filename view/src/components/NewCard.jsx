@@ -30,13 +30,11 @@ const NewCard = ({ restaurant, onUpdate, onDelete }) => {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button
-          size="small"
-          color="primary"
-          onClick={() => onUpdate(restaurant)}
-        >
-          Update
-        </Button>
+        <Link to={`/edit/${id}`}>
+          <Button size="small" color="primary">
+            Update
+          </Button>
+        </Link>
 
         <Button size="small" color="error" onClick={() => onDelete(id)}>
           Delete

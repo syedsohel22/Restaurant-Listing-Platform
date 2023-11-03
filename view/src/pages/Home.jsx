@@ -4,6 +4,7 @@ import { Container, Grid } from "@mui/material";
 
 import Loader from "../components/Loader";
 import NewCard from "../components/NewCard";
+import Header from "../components/Header";
 const Home = () => {
   const [restaurants, setRestaurants] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -25,6 +26,7 @@ const Home = () => {
   console.log(restaurants);
   return (
     <Container>
+      <Header />
       {isLoading ? (
         <Loader />
       ) : (

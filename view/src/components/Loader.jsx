@@ -1,4 +1,3 @@
-import React from "react";
 import { CircularProgress, Typography, Box } from "@mui/material";
 
 const loaderContainerStyle = {
@@ -12,7 +11,7 @@ const loaderContainerStyle = {
   alignItems: "center",
   justifyContent: "center",
   background: "rgba(0, 0, 0, 0.1)",
-  zIndex: 9999, 
+  zIndex: 9999,
 };
 
 const loaderTextStyle = {
