@@ -1,11 +1,13 @@
 const { Restaurant } = require("../models");
+const errorHandler = require("../utils/Error");
 
-const createRestaurant = async (req, res) => {
+const createRestaurant = async (req, res, next) => {
   const { name, address, contact } = req.body;
-  if (!name || !address || !contact) {
-    res.status(404).json({ message: "please enter every value." });
-  }
+
   try {
+    if (!name) return next(errorHandler(400, "Please enter a name"));
+    if (!address) return next(errorHandler(400, "Please enter a address"));
+    if (!contact) return next(errorHandler(400, "Please enter a contact"));
     const restaurant = await Restaurant.create({
       name,
       address,
@@ -14,8 +16,7 @@ const createRestaurant = async (req, res) => {
 
     res.status(201).json(restaurant);
   } catch (error) {
-    console.log(error);
-    res.status(500).json({ error: "could not create a new restaurant" });
+    next(error);
   }
 };
 module.exports = { createRestaurant };
