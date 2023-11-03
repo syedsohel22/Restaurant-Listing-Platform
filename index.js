@@ -1,11 +1,12 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const cors = require("cors");
 const app = express();
 const port = 3000;
 const restaurantRouter = require("./routes/restaurant.routes");
 // middleware
 app.use(bodyParser.json());
-
+app.use(cors());
 app.use("/api/v1/restaurants", restaurantRouter);
 // testing
 app.get("/", (req, res) => {
