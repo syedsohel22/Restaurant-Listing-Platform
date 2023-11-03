@@ -6,7 +6,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { Link } from "react-router-dom";
 
-const NewCard = ({ restaurant, onUpdate, onDelete }) => {
+const NewCard = ({ restaurant,  handleDelete }) => {
   const { id, name, address, contact } = restaurant;
   return (
     <Card sx={{ maxWidth: 345 }}>
@@ -36,7 +36,7 @@ const NewCard = ({ restaurant, onUpdate, onDelete }) => {
           </Button>
         </Link>
 
-        <Button size="small" color="error" onClick={() => onDelete(id)}>
+        <Button size="small" color="error" onClick={() => handleDelete(id)}>
           Delete
         </Button>
       </CardActions>

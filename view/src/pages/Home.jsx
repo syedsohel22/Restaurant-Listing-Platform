@@ -8,6 +8,7 @@ import Header from "../components/Header";
 const Home = () => {
   const [restaurants, setRestaurants] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [reload, setReload] = useState(true);
   useEffect(() => {
     setIsLoading(true);
 
@@ -22,7 +23,18 @@ const Home = () => {
         setIsLoading(false);
         console.log(err);
       });
-  }, []);
+  }, [reload]);
+
+  const handleDelete = (id) => {
+    console.log("handleDelere", id);
+    axios
+      .delete(`http://localhost:3000/api/v1/restaurants/${id}`)
+      .then((res) => {
+        // a toast
+        setReload(!reload);
+      })
+      .catch((err) => console.log(err));
+  };
   console.log(restaurants);
   return (
     <Container>
@@ -36,7 +48,7 @@ const Home = () => {
             {restaurants.map((restaurant) => (
               <Grid item xs={12} sm={6} md={4} key={restaurant.id}>
                 {/* <RestaurantCard restaurant={restaurant} /> */}
-                <NewCard restaurant={restaurant} />
+                <NewCard restaurant={restaurant} handleDelete={handleDelete} />
               </Grid>
             ))}
           </Grid>
