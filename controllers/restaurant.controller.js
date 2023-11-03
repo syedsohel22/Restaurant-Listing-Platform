@@ -31,4 +31,20 @@ const getAllRestaurants = async (req, res, next) => {
   }
 };
 
-module.exports = { createRestaurant, getAllRestaurants };
+const getRestaurantById = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const restaurant = await Restaurant.findByPk(id);
+
+    if (!restaurant) {
+      return res.status(404).json({ error: "Restaurant not found." });
+    }
+
+    res.json(restaurant);
+  } catch (error) {
+    next(error);
+  }
+};
+
+module.exports = { createRestaurant, getAllRestaurants, getRestaurantById };
