@@ -19,4 +19,16 @@ const createRestaurant = async (req, res, next) => {
     next(error);
   }
 };
-module.exports = { createRestaurant };
+
+const getAllRestaurants = async (req, res, next) => {
+  try {
+    const restaurants = await Restaurant.findAll();
+
+    res.json(restaurants);
+  } catch (error) {
+    console.error(error);
+    next(error);
+  }
+};
+
+module.exports = { createRestaurant, getAllRestaurants };
